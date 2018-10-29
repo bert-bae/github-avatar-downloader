@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/bert-bae/github-avatar-downloader/issues"
   },
-  "homepage": "https://github.com/bert-bae/github-avatar-downloader#readme"
+  "homepage": "https://github.com/bert-bae/github-avatar-downloader#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
 }
