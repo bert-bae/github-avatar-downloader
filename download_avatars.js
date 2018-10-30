@@ -5,6 +5,8 @@ var secret = require('./secret');
 
 console.log("Welcome to the Github avatar downloader");
 
+var myargv = process.argv.slice(2);
+
 function getRepoContributors(repoOwner, repoName, callback) {
   var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
@@ -21,7 +23,7 @@ function getRepoContributors(repoOwner, repoName, callback) {
   });
 }
 
-getRepoContributors("jquery", "jquery", function (err, result) {
+getRepoContributors(myargv[0], myargv[1], function (err, result) {
   if (err) {
     console.log('Errors: ', err);
   }
