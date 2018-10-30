@@ -21,5 +21,7 @@ function getRepoContributors(repoOwner, repoName, callback) {
 
 getRepoContributors("jquery", "jquery", function (err, result) {
   console.log('Errors: ', err);
-  console.log('Results: ', result);
+  result.forEach(function (list) {
+    console.log(`Here is ${list.login}'s avatar URL:   ${list.avatar_url}`);
+  });
 });
