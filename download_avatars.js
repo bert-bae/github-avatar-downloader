@@ -33,17 +33,17 @@ function downloadImageByURL(url, filePath) {
       }
     })
     .on('response', function(response) {
-      console.log('Starting the download!');
+      console.log('Starting the download to: ' + filePath);
     })
     .on('end', function(){
-      console.log("Download complete.");
+      console.log("Download complete. View the file here: " + filePath);
     })
     .pipe(fs.createWriteStream(filePath));
 }
 
 // callback function to get the avatar_url and to save it using the user's login
 getRepoContributors(myargv[0], myargv[1], function (err, result) {
-  if (myargv[0] || myargv[1] === undefined) {
+  if (myargv[0] === undefined) {
     console.log("Entry invalid. Please enter the repo owner and name as such:  node download_avatars.js [repoOwner] [repoName]");
     return;
   }
