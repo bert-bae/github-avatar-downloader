@@ -1,7 +1,7 @@
 var request = require('request');
 var fs = require('fs');
 var https = require('https');
-var secret = require('./secret');
+var env = require('dotenv').config();
 
 console.log("Welcome to the Github avatar downloader");
 

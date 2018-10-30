@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/bert-bae/github-avatar-downloader#readme",
   "dependencies": {
+    "dotenv": "^6.1.0",
     "request": "^2.88.0"
   }
 }
