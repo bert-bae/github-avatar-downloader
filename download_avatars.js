@@ -7,6 +7,7 @@ console.log("Welcome to the Github avatar downloader");
 
 var myargv = process.argv.slice(2);
 
+// get access to the github API
 function getRepoContributors(repoOwner, repoName, callback) {
   var options = {
     url: "https://api.github.com/repos/" + repoOwner + "/" + repoName + "/contributors",
@@ -23,16 +24,7 @@ function getRepoContributors(repoOwner, repoName, callback) {
   });
 }
 
-getRepoContributors(myargv[0], myargv[1], function (err, result) {
-  if (err) {
-    console.log('Errors: ', err);
-  }
-  result.forEach(function (list) {
-    downloadImageByURL(list.avatar_url, './avatarimgs/' + list.login + ".jpg");
-  });
-});
-
-
+// using fs to download images via the url provided in the callback below
 function downloadImageByURL(url, filePath) {
   request.get(url)
     .on('error', function(err) {
@@ -49,4 +41,17 @@ function downloadImageByURL(url, filePath) {
     .pipe(fs.createWriteStream(filePath));
 }
 
+// callback function to get the avatar_url and to save it using the user's login
+getRepoContributors(myargv[0], myargv[1], function (err, result) {
+  if (myargv[0] || myargv[1] === undefined) {
+    console.log("Entry invalid. Please enter the repo owner and name as such:  node download_avatars.js [repoOwner] [repoName]");
+    return;
+  }
+  if (err) {
+    console.log('Errors: ', err);
+  }
+  result.forEach(function (list) {
+    downloadImageByURL(list.avatar_url, './avatarimgs/' + list.login + ".jpg");
+  });
+});
 
